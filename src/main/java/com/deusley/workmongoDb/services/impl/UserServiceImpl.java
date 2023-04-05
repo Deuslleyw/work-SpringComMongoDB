@@ -1,6 +1,7 @@
 package com.deusley.workmongoDb.services.impl;
 
 import com.deusley.workmongoDb.domain.User;
+import com.deusley.workmongoDb.dto.UserDTO;
 import com.deusley.workmongoDb.exceptions.ObjectNotFoundException;
 import com.deusley.workmongoDb.repository.UserRepository;
 import com.deusley.workmongoDb.services.UserService;
@@ -29,6 +30,12 @@ public class UserServiceImpl implements UserService {
     public User findById(String id) {
         Optional<User> obj = rep.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Id de  Usuario inexistente!"));
+    }
+
+    @Override
+    public User Insert(UserDTO userDTO) {
+
+        return rep.insert(mapper.map(userDTO, User.class));
     }
 
 

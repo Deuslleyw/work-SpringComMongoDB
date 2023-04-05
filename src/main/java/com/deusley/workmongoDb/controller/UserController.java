@@ -6,10 +6,10 @@ import com.deusley.workmongoDb.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "api/v1/users")
 public class UserController {
 
+    public static final String ID = "/{id}";
     @Autowired
     private UserService service;
 
@@ -31,12 +32,21 @@ public class UserController {
         return ResponseEntity.ok().body(response);
 
     }
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = ID)
     public ResponseEntity <UserDTO> findById(@PathVariable String id){
-        var userId = service.findById(id);
-        var mapperResponse = mapper.map(userId, UserDTO.class);
+        var user = service.findById(id);
+        var mapperResponse = mapper.map(user, UserDTO.class);
 
         return ResponseEntity.ok().body(mapperResponse);
 
+    }
+    @PostMapping
+    public ResponseEntity<Void> Insert(@RequestBody UserDTO userDTO){
+
+        var mapperInsert = mapper.map(userDTO, User.class);
+        var user = service.Insert(userDTO);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest().path(ID).buildAndExpand((user).getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
