@@ -22,7 +22,7 @@ public class InstantiationDB implements CommandLineRunner {
         User user1 = new User(null, "Deusley Diego", "Dev@test.com");
         User user2 = new User(null, "Rosangela", "Rosangela@test.com");
         User user3 = new User(null, "Andreia", "Andreia@test.com");
-        User user4 = new User(null, "Jéssica", "Jessica@test.com");
+        User user4 = new User(null, "Geraldo", "Geraldo@test.com");
         User user5 = new User(null, "Marta", "Marta@test.com");
 
         repository.saveAll(List.of(user1, user2, user3,user4,user5));
