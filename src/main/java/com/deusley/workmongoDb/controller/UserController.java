@@ -49,4 +49,18 @@ public class UserController {
                 .fromCurrentRequest().path(ID).buildAndExpand((user).getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+    @DeleteMapping(value = ID)
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping(value = ID)
+    public ResponseEntity<UserDTO> update(@PathVariable String id , @RequestBody UserDTO userDTO){
+        userDTO.setId(id);
+
+        var user = service.update(userDTO);
+        var responseMapper = mapper.map(userDTO, UserDTO.class);
+        return ResponseEntity.ok().body(userDTO);
+    }
+
 }

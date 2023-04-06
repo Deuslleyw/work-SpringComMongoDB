@@ -12,4 +12,8 @@ public interface UserService {
     User findById(String id);
 
     User Insert(UserDTO userDTO);
+
+    void delete(String id);
+
+    User update(UserDTO userDTO);
 }

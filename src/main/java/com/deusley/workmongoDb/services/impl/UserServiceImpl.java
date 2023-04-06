@@ -34,8 +34,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User Insert(UserDTO userDTO) {
-
         return rep.insert(mapper.map(userDTO, User.class));
+    }
+
+    @Override
+    public void delete(String id) {
+        findById(id);
+        rep.deleteById(id);
+    }
+
+    @Override
+    public User update(UserDTO userDTO) {
+        return rep.save(mapper.map(userDTO, User.class));
     }
 
 
