@@ -62,5 +62,4 @@ public class UserController {
         var responseMapper = mapper.map(userDTO, UserDTO.class);
         return ResponseEntity.ok().body(userDTO);
     }
-
 }

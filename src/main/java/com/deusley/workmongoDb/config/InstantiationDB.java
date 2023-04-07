@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -39,10 +40,16 @@ public class InstantiationDB implements CommandLineRunner {
 
         userRepository.saveAll(List.of(user1, user2, user3,user4,user5));
 
-        Post post1 = new Post(null, date.parse("01/02/2022"), "Boa noite", "Aqui Treinando MongoDB! hehehe", new AuthorDTO(user1));
-        Post post2 = new Post(null, date.parse("03/02/2023"), "Ola Devs", "Fazendo uma nova aplicação!", new AuthorDTO(user2));
+        Post post1 = new Post(null, date.parse("01/02/2022"),
+                "Boa noite", "Aqui Treinando MongoDB! hehehe", new AuthorDTO(user1));
+
+        Post post2 = new Post(null, date.parse("03/02/2023"),
+                "Ola Devs", "Fazendo uma nova aplicação!", new AuthorDTO(user2));
 
         postRepository.saveAll(List.of(post1, post2));
+
+        user1.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(user1);
 
     }
 }
