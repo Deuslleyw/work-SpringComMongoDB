@@ -1,6 +1,8 @@
 package com.deusley.workmongoDb.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.Objects;
@@ -10,12 +12,15 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Document
 public class Post {
 
+    @Id
     private String id;
     private Date date;
     private String title;
     private String body;
+    private User author;
 
     @Override
     public boolean equals(Object o) {
