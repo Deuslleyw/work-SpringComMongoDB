@@ -2,6 +2,7 @@ package com.deusley.workmongoDb.config;
 
 import com.deusley.workmongoDb.domain.Post;
 import com.deusley.workmongoDb.domain.User;
+import com.deusley.workmongoDb.dto.AuthorDTO;
 import com.deusley.workmongoDb.repository.PostRepository;
 import com.deusley.workmongoDb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,11 @@ public class InstantiationDB implements CommandLineRunner {
         User user4 = new User(null, "Geraldo", "Geraldo@test.com");
         User user5 = new User(null, "Marta", "Marta@test.com");
 
-        Post post1 = new Post(null, date.parse("01/02/2022"), "Boa noite", "Aqui Treinando MongoDB! hehehe", user1);
-        Post post2 = new Post(null, date.parse("03/02/2023"), "Ola Devs", "Fazendo uma nova aplicação!", user1);
-
         userRepository.saveAll(List.of(user1, user2, user3,user4,user5));
+
+        Post post1 = new Post(null, date.parse("01/02/2022"), "Boa noite", "Aqui Treinando MongoDB! hehehe", new AuthorDTO(user1));
+        Post post2 = new Post(null, date.parse("03/02/2023"), "Ola Devs", "Fazendo uma nova aplicação!", new AuthorDTO(user2));
+
         postRepository.saveAll(List.of(post1, post2));
 
     }

@@ -1,5 +1,6 @@
 package com.deusley.workmongoDb.domain;
 
+import com.deusley.workmongoDb.dto.AuthorDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,19 +21,17 @@ public class Post {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Post post)) return false;
-        return Objects.equals(getId(), post.getId()) &&
-                Objects.equals(getDate(), post.getDate())
-                && Objects.equals(getTitle(), post.getTitle())
-                && Objects.equals(getBody(), post.getBody());
+        return Objects.equals(getId(), post.getId()) && Objects.equals(getDate(), post.getDate());
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDate(), getTitle(), getBody());
+        return Objects.hash(getId(), getDate());
     }
 }
