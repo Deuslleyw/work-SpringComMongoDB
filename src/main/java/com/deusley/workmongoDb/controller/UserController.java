@@ -1,6 +1,8 @@
 package com.deusley.workmongoDb.controller;
 
+import com.deusley.workmongoDb.domain.Post;
 import com.deusley.workmongoDb.domain.User;
+import com.deusley.workmongoDb.dto.PostDTO;
 import com.deusley.workmongoDb.dto.UserDTO;
 import com.deusley.workmongoDb.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -61,5 +63,11 @@ public class UserController {
         var user = service.update(userDTO);
         var responseMapper = mapper.map(userDTO, UserDTO.class);
         return ResponseEntity.ok().body(userDTO);
+    }
+
+    @GetMapping(value = "{id}/posts")
+    public ResponseEntity <List<Post>> findByPost(@PathVariable String id) {
+        var user = service.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
