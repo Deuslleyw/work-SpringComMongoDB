@@ -70,4 +70,13 @@ public class UserController {
         var user = service.findById(id);
         return ResponseEntity.ok().body(user.getPosts());
     }
-}
+
+  //  @GetMapping(value = "{id}")
+   // public ResponseEntity <PostDTO> findByPostId(@PathVariable String id){
+    //    var post = service.findByPostId(id);
+      //  var postMapper = mapper.map(post, PostDTO.class);
+
+        //return ResponseEntity.ok().body(postMapper);
+
+    }
+//}

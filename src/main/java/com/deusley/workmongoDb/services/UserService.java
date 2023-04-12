@@ -1,6 +1,5 @@
 package com.deusley.workmongoDb.services;
 
-import com.deusley.workmongoDb.domain.Post;
 import com.deusley.workmongoDb.domain.User;
 import com.deusley.workmongoDb.dto.UserDTO;
 
@@ -17,8 +16,5 @@ public interface UserService {
     void delete(String id);
 
     User update(UserDTO userDTO);
-
-    User findByPost(String id);
-
 
 }

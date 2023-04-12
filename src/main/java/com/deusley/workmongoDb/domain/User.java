@@ -1,6 +1,5 @@
 package com.deusley.workmongoDb.domain;
 
-import com.deusley.workmongoDb.dto.PostDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
