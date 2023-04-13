@@ -3,6 +3,7 @@ package com.deusley.workmongoDb.config;
 import com.deusley.workmongoDb.domain.Post;
 import com.deusley.workmongoDb.domain.User;
 import com.deusley.workmongoDb.dto.AuthorDTO;
+import com.deusley.workmongoDb.dto.CommentDTO;
 import com.deusley.workmongoDb.repository.PostRepository;
 import com.deusley.workmongoDb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
@@ -45,6 +47,19 @@ public class InstantiationDB implements CommandLineRunner {
 
         Post post2 = new Post(null, date.parse("03/02/2023"),
                 "Ola Devs", "Fazendo uma nova aplicação!", new AuthorDTO(user2));
+
+        CommentDTO Cmm1 = new CommentDTO
+                ("Isso aeee, Vai ficar top!",date.parse("2023/02/11"), new AuthorDTO(user5));
+
+        CommentDTO Cmm2 = new CommentDTO
+                ("Ja quero testar! :D ",date.parse("2023/03/14"), new AuthorDTO(user4));
+
+        CommentDTO Cmm3 = new CommentDTO
+                ("Me manda depois",date.parse("2023/03/12"), new AuthorDTO(user3));
+
+
+        post1.getComments().addAll(Arrays.asList(Cmm1, Cmm2));
+        post2.getComments().add(Cmm3);
 
         postRepository.saveAll(List.of(post1, post2));
 
