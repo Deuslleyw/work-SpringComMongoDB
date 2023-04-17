@@ -26,7 +26,7 @@ public class InstantiationDB implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
         date.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userRepository.deleteAll();
@@ -40,20 +40,20 @@ public class InstantiationDB implements CommandLineRunner {
 
         userRepository.saveAll(List.of(user1, user2, user3,user4,user5));
 
-        Post post1 = new Post(null, date.parse("01/02/2022"),
+        Post post1 = new Post(null, date.parse("2021/02/20"),
                 "Boa noite", "Aqui Treinando MongoDB! hehehe", new AuthorDTO(user1));
 
-        Post post2 = new Post(null, date.parse("03/02/2023"),
+        Post post2 = new Post(null, date.parse("2022/04/01"),
                 "Ola Devs", "Fazendo uma nova aplicação!", new AuthorDTO(user2));
 
         CommentDTO Cmm1 = new CommentDTO
-                ("Isso aeee, Vai ficar top!",date.parse("2023/02/11"), new AuthorDTO(user5));
+                ("Isso aeee, Vai ficar top!",date.parse("2021/04/11"), new AuthorDTO(user5));
 
         CommentDTO Cmm2 = new CommentDTO
-                ("Ja quero testar! :D ",date.parse("2023/03/14"), new AuthorDTO(user4));
+                ("Ja quero testar! :D ",date.parse("2022/04/14"), new AuthorDTO(user4));
 
         CommentDTO Cmm3 = new CommentDTO
-                ("Me manda depois",date.parse("2023/03/12"), new AuthorDTO(user3));
+                ("Me manda depois",date.parse("2022/04/20"), new AuthorDTO(user3));
 
         post1.getComments().addAll(Arrays.asList(Cmm1, Cmm2));
         post2.getComments().add(Cmm3);

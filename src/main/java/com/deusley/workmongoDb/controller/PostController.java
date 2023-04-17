@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -32,11 +32,24 @@ public class PostController {
     }
 
     @GetMapping(value = "/titlesearch")
-    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text){
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
         text = URL.decodeParam(text);
-        List<Post> postDTOList = postService.findByTitle(text);
-        var mapperDto = mapper.map(postDTOList, PostDTO.class);
-        return ResponseEntity.ok().body(postDTOList);
-    }
+        List<Post> list = postService.findByTitle(text);
+        var mapperDto = mapper.map(list, PostDTO.class);
+        return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping(value = "/allsearch")
+    public ResponseEntity<List<Post>> allSearch(
+            @RequestParam(value = "text", defaultValue = "") String text,
+            @RequestParam(value = "dateMin", defaultValue = "") String dateMin,
+            @RequestParam(value = "dateMax", defaultValue = "") String dateMax) {
+
+        text = URL.decodeParam(text);
+        var date = URL.convertDates(dateMin, new Date(0L));
+        var date2 = URL.convertDates(dateMax, new Date());
+
+        List<Post> list = postService.allSearch(text, date, date2);
+        return ResponseEntity.ok().body(list);
+    }
+}
