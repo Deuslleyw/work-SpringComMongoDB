@@ -37,8 +37,6 @@ public class PostController {
         List<Post> postDTOList = postService.findByTitle(text);
         var mapperDto = mapper.map(postDTOList, PostDTO.class);
         return ResponseEntity.ok().body(postDTOList);
-
-
     }
     }
 

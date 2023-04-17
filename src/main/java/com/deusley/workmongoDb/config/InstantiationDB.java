@@ -9,9 +9,7 @@ import com.deusley.workmongoDb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
@@ -56,7 +54,6 @@ public class InstantiationDB implements CommandLineRunner {
 
         CommentDTO Cmm3 = new CommentDTO
                 ("Me manda depois",date.parse("2023/03/12"), new AuthorDTO(user3));
-
 
         post1.getComments().addAll(Arrays.asList(Cmm1, Cmm2));
         post2.getComments().add(Cmm3);

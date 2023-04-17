@@ -8,13 +8,8 @@ import java.util.List;
 public interface UserService {
 
     List<User> findAll();
-
     User findById(String id);
-
     User Insert(UserDTO userDTO);
-
     void delete(String id);
-
     User update(UserDTO userDTO);
-
 }

@@ -27,7 +27,6 @@ public class UserDTO implements Serializable {
                 Objects.equals(getName(), userDTO.getName()) &&
                 getEmail().equals(userDTO.getEmail());
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getEmail());

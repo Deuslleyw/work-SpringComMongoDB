@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
         Optional<User> obj = rep.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Id de  Usuario inexistente!"));
     }
-
     @Override
     public User Insert(UserDTO userDTO) {
         return rep.insert(mapper.map(userDTO, User.class));
@@ -47,11 +46,8 @@ public class UserServiceImpl implements UserService {
         findById(id);
         rep.deleteById(id);
     }
-
     @Override
     public User update(UserDTO userDTO) {
         return rep.save(mapper.map(userDTO, User.class));
     }
-
-
 }

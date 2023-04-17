@@ -6,10 +6,6 @@ import java.util.List;
 
 
 public interface PostService {
-
     Post findByPostId(String id);
-
     List<Post> findByTitle(String text);
-
-
 }
