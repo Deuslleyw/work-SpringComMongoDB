@@ -14,7 +14,6 @@ public class URL {
         return URLDecoder.decode(text, StandardCharsets.UTF_8);
 
     }
-
     public static Date convertDates(String textDate, Date defaultValue){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));

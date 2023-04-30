@@ -33,7 +33,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> allSearch(String text, Date dateMin, Date dateMax) {
-      //  dateMax = new Date(dateMax.getTime() + 24 * 60 * 60 * 1000);
+        dateMax = new Date(dateMax.getTime() + 24 * 60 * 60 * 1000);
         return repPost.AllSearch(text, dateMin, dateMax);
     }
 }
